@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Module starts a Flask web application"""
 from flask import Flask
+from flask import render_template
 app = Flask(__name__)  # Holds the name of the module.
 
 
@@ -36,6 +37,13 @@ def python(text='is cool'):
 def number(n):
     """Function returns a string with an integer when routed to"""
     return "{:d} is a number".format(n)
+
+
+# Maps the /number_template/<n> route.
+@app.route('/number_template/<int:n>', strict_slashes=False)
+def number_template(n):
+    """Function returns a HTML page when an integer is given."""
+    return render_template('5-number.html', n=n)
 
 
 if __name__ == '__main__':
