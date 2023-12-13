@@ -22,11 +22,11 @@ def c(text):
     return "C {}".format(text.replace("_", " "))
 
 
-# Maps the /python route and sets a default value for text.
-@app.route('/python/', defaults={'text': 'is cool'}, strict_slashes=False)
-# Maps the /python/<text> route.
+# Maps the /python route.
 @app.route('/python', strict_slashes=False)
-def python(text="is cool"):
+# Maps the /python/<text> route.
+@app.route('/python/<text>', strict_slashes=False)
+def python(text='is cool'):
     """Function returns a string when routed to"""
     return "Python {}".format(text.replace("_", " "))
 
