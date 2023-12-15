@@ -19,8 +19,9 @@ def cities_by_states():
     Function returns a HTML page with a list
     of states when routed to
     """
-    states = storage.all(State).values()
-    return render_template('8-cities_by_states.html', states=states)
+    states = storage.all(State)
+    states_cities = list(states.values())
+    return render_template('8-cities_by_states.html', states=states_cities)
 
 
 if __name__ == '__main__':
