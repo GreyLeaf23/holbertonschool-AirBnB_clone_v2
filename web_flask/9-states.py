@@ -14,7 +14,6 @@ def states():
     list of states when routed to.
     """
     states = storage.all(State).values()
-    states = sorted(states, key=lambda state: state.name)
     return render_template('9-states.html', states=states)
 
 
@@ -24,13 +23,10 @@ def state(id):
     Function returns a HTML page with a
     list of states when routed to.
     """
-    state = storage.get(State, id)
-    if state is not None:
-        cities = sorted(state.cities, key=lambda city: city.name)
-        return render_template('9-states.html',
-                               state=state, cities=cities)
-    else:
-        return render_template('9-states.html', state=None)
+    for state in storage.all(State).values():
+        if state.id == id:
+            return render_template('9-states.html', state=state)
+    return render_template('9-states.html')
 
 @app.teardown_appcontext
 def teardown_db(self):
