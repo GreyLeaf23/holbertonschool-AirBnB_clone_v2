@@ -14,7 +14,7 @@ def states():
     """
     states = storage.all(State).values()
     states = sorted(states, key=lambda state: state.name)
-    return render_template('states.html', states=states)
+    return render_template('9-states.html', states=states)
 
 
 @app.route('/states/<id>', strict_slashes=False)
@@ -26,7 +26,7 @@ def state(id):
     state = storage.get(State, id)
     if state is not None:
         cities = sorted(state.cities, key=lambda city: city.name)
-        return render_template('state.html',
+        return render_template('9-state.html',
                                state=state, cities=cities)
     else:
         return render_template('404.html'), 404
