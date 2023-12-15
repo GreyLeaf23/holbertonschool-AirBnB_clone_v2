@@ -3,7 +3,6 @@
 from flask import Flask, render_template
 from models import storage
 from models.state import State
-from models.city import City
 
 app = Flask(__name__)  # Holds the name of the module.
 
@@ -21,9 +20,7 @@ def cities_by_states():
     of states when routed to
     """
     states = storage.all(State)
-    cities = storage.all(City)
-    return render_template('8-cities_by_states.html',
-                           states=states, cities=cities)
+    return render_template('8-cities_by_states.html', states=states)
 
 
 if __name__ == '__main__':
