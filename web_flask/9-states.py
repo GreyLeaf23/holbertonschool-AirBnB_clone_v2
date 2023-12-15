@@ -27,11 +27,10 @@ def state(id):
     state = storage.get(State, id)
     if state is not None:
         cities = sorted(state.cities, key=lambda city: city.name)
-        return render_template('9-state.html',
+        return render_template('9-states.html',
                                state=state, cities=cities)
     else:
-        return render_template('404.html'), 404
-
+        return render_template('9-states.html', state=None)
 
 @app.teardown_appcontext
 def teardown_db(self):
