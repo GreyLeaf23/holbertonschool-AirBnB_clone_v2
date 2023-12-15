@@ -8,15 +8,25 @@ app = Flask(__name__)
 
 
 @app.route('/states', strict_slashes=False)
+def states():
+    """
+    Function returns a HTML page with a
+    list of states when routed to.
+    """
+    states = storage.all(State)
+    return render_template('9-states.html', states=states)
+
+
 @app.route('/states/<id>', strict_slashes=False)
-def states(id=None):
-    state_dic = storage.all(State)
-    state = None
-    for obj in state_dic.values():
-        if obj.id == id:
-            state = obj
-    return render_template('9-states.html', states=state_dic, id=id,
-                           state=state)
+def state(id):
+    """
+    Function returns a HTML page with a
+    list of states when routed to.
+    """
+    for state in storage.all(State).values():
+        if state.id == id:
+            return render_template('9-states.html', state=state)
+    return render_template('9-states.html')
 
 
 @app.teardown_appcontext
